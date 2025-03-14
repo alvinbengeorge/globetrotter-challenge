@@ -27,7 +27,9 @@ class Generator:
                 'response_schema': Content
             }
         )
-        return dict(response.parsed)
+        output = dict(response.parsed)
+        output["options"] = options
+        return output
 
 if __name__ == "__main__":
     g = Generator()
