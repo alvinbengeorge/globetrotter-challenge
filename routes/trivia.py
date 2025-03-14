@@ -17,4 +17,4 @@ async def generate_trivia() -> TriviaOutput:
 @router.post("/verify")
 async def verify_trivia(user_input: VerifyInput):
     data = db.get(user_input.inserted_id)
-    return {"correct": user_input.answer == data["answer"], "data": data}
+    return {"correct": user_input.answer == data["city"], "data": data}

@@ -19,6 +19,6 @@ class Database:
     def get(self, inserted_id: str):
         data = self.queue.find_one({"_id": ObjectId(inserted_id)})
         data['_id'] = inserted_id
-        
+        return data
 
     
