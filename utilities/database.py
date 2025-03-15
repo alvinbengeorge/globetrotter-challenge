@@ -10,6 +10,9 @@ class Database:
     def __init__(self):
         self.db = client["globetrotter"]
         self.queue = self.db["queue"]
+        self.check_duplicate_cities()
+        self.users = self.db["users"]
+        self.games = self.db["games"]
 
     def insert(self, data):
         print(data)
@@ -20,5 +23,31 @@ class Database:
         data = self.queue.find_one({"_id": ObjectId(inserted_id)})
         data['_id'] = inserted_id
         return data
+    
+    def insert_games(self, data):
+        response = self.games.insert_one(data)
+        return str(response.inserted_id)
+    
+    def create_new_user(self, username):
+        response = self.users.insert_one({
+            "username": username,
+            "total_correct_answers": 0,
+            "total_wrong_answers": 0,
+            "total_games_played": 0
+        })
+        return str(response.inserted_id)
+    
+    def check_user_exists(self, username):
+        return self.users.find_one(username) is not None
+    
+    def check_duplicate_cities(self):
+        pipeline = [
+            {"$group": {"_id": "$name", "count": {"$sum": 1}}},
+            {"$match": {"count": {"$gt": 1}}}
+        ]
+
+        duplicates = list(self.queue.aggregate(pipeline))
+
+        print(duplicates)
 
     
