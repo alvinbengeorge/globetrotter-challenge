@@ -41,13 +41,13 @@ class Database:
         return self.users.find_one(username) is not None
     
     def check_duplicate_cities(self):
-        pipeline = [
-            {"$group": {"_id": "$name", "count": {"$sum": 1}}},
-            {"$match": {"count": {"$gt": 1}}}
-        ]
-
-        duplicates = list(self.queue.aggregate(pipeline))
-
+        results = self.queue.find({})
+        results = [result['city'] for result in results]
+        duplicates = []
+        for result in set(results):
+            if results.count(result) > 1:
+                duplicates.append(result)     
+                self.queue.delete_many({"city": result})
         print(duplicates)
 
     

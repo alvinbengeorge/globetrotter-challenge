@@ -10,4 +10,5 @@ async def user_details(req: Request):
     username = req.headers.get("username")
     if not username: 
         return {}
+    return db.check_user_exists(username)
     
