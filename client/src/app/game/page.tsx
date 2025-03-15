@@ -106,7 +106,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
         }
       ).then(response => response.json()).then((data) => {
         console.log(data)
-        setShareUrl(`http://localhost:3000/game?game=${data.game_id}`)
+        setShareUrl(`https://globetrotter-challenge-alvinbengeorge.vercel.app/game?game=${data.game_id}`)
       })
     } else {
       fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game`, {
@@ -118,7 +118,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
           wrongAnswers: incorrectCount,
         }),
       }).then(response => response.json()).then((data) => {
-        setShareUrl(`http://localhost:3000/game?game=${data.game_id}`)
+        setShareUrl(`https://globetrotter-challenge-alvinbengeorge.vercel.app/game?game=${data.game_id}`)
       })        
     }
     setNameUpdated(true)
