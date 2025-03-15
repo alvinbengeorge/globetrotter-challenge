@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 ENV PYTHONPATH=/app
 EXPOSE 8000
 
-CMD ["fastapi", "run"]
+CMD ["fastapi", "run", "--port", "8080"]
