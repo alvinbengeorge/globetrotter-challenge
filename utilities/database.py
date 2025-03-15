@@ -28,18 +28,6 @@ class Database:
         response = self.games.insert_one(data)
         return str(response.inserted_id)
     
-    def create_new_user(self, username):
-        response = self.users.insert_one({
-            "username": username,
-            "total_correct_answers": 0,
-            "total_wrong_answers": 0,
-            "total_games_played": 0
-        })
-        return str(response.inserted_id)
-    
-    def check_user_exists(self, username):
-        return self.users.find_one(username) is not None
-    
     def check_duplicate_cities(self):
         results = self.queue.find({})
         results = [result['city'] for result in results]
@@ -47,7 +35,23 @@ class Database:
         for result in set(results):
             if results.count(result) > 1:
                 duplicates.append(result)     
-                self.queue.delete_many({"city": result})
         print(duplicates)
+        
+    def get_games(self, game_id: str):
+        data = self.games.find_one({"_id": ObjectId(game_id)})
+        if not data:
+            return {
+                "_id": game_id,
+                "games": []
+            }
+        data['_id'] = game_id
+        return data
+    
+    def add_to_game(self, game_id: str, user):
+        response = self.games.update_one(
+            {"_id": ObjectId(game_id)},
+            {"$push": {"games": dict(user)}}
+        )
+        return game_id if response.modified_count else None
 
     

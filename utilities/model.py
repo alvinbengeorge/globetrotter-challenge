@@ -15,3 +15,14 @@ class TriviaOutput(BaseModel):
 class VerifyInput(BaseModel):
     answer: str
     inserted_id: str
+
+class User(BaseModel):
+    username: str
+    correctAnswers: int
+    wrongAnswers: int
+
+class Game(BaseModel):
+    host_username: str
+    users: list[User]
+
+    

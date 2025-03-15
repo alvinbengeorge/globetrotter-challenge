@@ -11,7 +11,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ correctCount, incorrectCount }) =
     <div className="scorecard bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
       <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
         <List className="w-5 h-5 mr-2 text-blue-500" />
-        ScoreCard
+        Score Card
       </h2>
     <div className="text-gray-600 mb-4 grid grid-cols-2 gap-4">
       <div className="flex items-center">
