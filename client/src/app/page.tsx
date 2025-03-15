@@ -138,8 +138,9 @@ export default function TriviaQuestion() {
         <CardHeader className="bg-primary/5 py-2">
           <div className="flex items-center gap-2">
             <MapPin className="h-5 w-5 text-primary" />
-            <CardTitle className="text-base sm:text-lg lg:text-xl">Geography Trivia</CardTitle>
+            <CardTitle className="text-base sm:text-lg lg:text-xl">The Globetrotter Challenge</CardTitle>
           </div>
+          <CardDescription className="text-sm sm:text-base">The Ultimate Travel Guessing Game!</CardDescription>
           <CardDescription className="text-sm sm:text-base">Guess the place based on the clues</CardDescription>
         </CardHeader>
         <CardContent className="pt-6">
