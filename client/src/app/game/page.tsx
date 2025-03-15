@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from "react"
 import { CardFooter } from "@/components/ui/card"
 import Leaderboard from "@/components/leaderboard"
 import ConfettiComponent from "@/components/confetti"
@@ -14,10 +15,7 @@ import { useSearchParams } from "next/navigation"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 
-export default function TriviaQuestion() {
-  const searchParams = useSearchParams()
-  const queryParam = searchParams.get("game")
-
+function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [showResult, setShowResult] = useState(false)
   const [currentClue, setCurrentClue] = useState(0)
@@ -379,6 +377,21 @@ export default function TriviaQuestion() {
         {confetti && <ConfettiComponent />}
       </section>
     </main>
+  )
+}
+
+function TriviaQuestionWrapper() {
+  const searchParams = useSearchParams()
+  const queryParam = searchParams.get("game")
+
+  return <TriviaQuestionContent queryParam={queryParam} />
+}
+
+export default function TriviaQuestion() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TriviaQuestionWrapper />
+    </Suspense>
   )
 }
 
