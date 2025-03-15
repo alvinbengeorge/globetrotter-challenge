@@ -39,7 +39,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
   const [showUrlPopup, setShowUrlPopup] = useState(false)
   const [name, setName] = useState("")
   const [shareUrl, setShareUrl] = useState("")
-  const [showLeaderboard, setShowLeaderboard] = useState(false) // State for leaderboard dialog
+  const [showLeaderboard, setShowLeaderboard] = useState(queryParam ? true : false) // State for leaderboard dialog
 
   const handleSelectAnswer = (answer: string) => {
     setSelectedAnswer(answer)
