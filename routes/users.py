@@ -7,7 +7,7 @@ from utilities.model import User
 router = APIRouter(tags=["game"], prefix="/game")
 db = Database()
 
-@router.get("/{game_id}")
+@router.get("/{game_id}/")
 async def get_game(game_id: str):
     games = db.get_games(game_id)
     games["games"].sort(key=lambda x: x["correctAnswers"], reverse=True)
@@ -23,7 +23,7 @@ async def create_game(user: User):
         "game_id": inserted_id
     }
 
-@router.post("/{game_id}")
+@router.post("/{game_id}/")
 async def join_game(game_id: str, user: User):
     data = db.get_games(game_id)    
     if not data:
