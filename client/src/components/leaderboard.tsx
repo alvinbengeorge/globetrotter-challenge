@@ -17,7 +17,7 @@ const Leaderboard = ({ id }: game_id) => {
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game/${id}`)
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game/${id}/`)
             .then((res) => res.json())
             .then((data) => {
                 setLeaderboardData(data.games);

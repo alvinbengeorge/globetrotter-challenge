@@ -46,7 +46,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
   }
 
   const handleSubmit = () => {
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trivia/verify`, {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trivia/verify/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
       setShowUrlPopup(true)
     }
     if (queryParam) {
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game/${queryParam}`,{ 
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game/${queryParam}/`,{ 
           method: "POST", 
           headers: { "Content-Type": "application/json" }, 
           body: JSON.stringify({ 
@@ -109,7 +109,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
         setShareUrl(`https://globetrotter-challenge-alvinbengeorge.vercel.app/game?game=${data.game_id}`)
       })
     } else {
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game`, {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/game/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -155,7 +155,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
     setSelectedAnswer(null)
     setShowResult(false)
     setConfetti(false)
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trivia`).then((response) => {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trivia/`).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
           setOption(data.options)
@@ -170,7 +170,7 @@ function TriviaQuestionContent({ queryParam }: { queryParam: string | null }) {
   useEffect(() => {
     console.log(queryParam)
     if (questionCount < questionLimit) {
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trivia`).then((response) => {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trivia/`).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
             setOption(data.options)
