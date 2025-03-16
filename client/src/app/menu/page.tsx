@@ -40,9 +40,9 @@ const MenuPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white p-2">
             <h1 className="text-4xl font-bold mb-8">Globetrotter Challenge</h1>
-            <div className="grid place-items-center grid-cols-2 gap-0">
+            <div className="grid place-items-center grid-cols-2 gap-2">
                 <Link
                     href="/game/"
                     className="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg text-lg font-semibold shadow-md transition duration-300 h-full grid place-items-center"
