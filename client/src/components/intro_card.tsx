@@ -12,7 +12,7 @@ import {
         <TextRevealCard
           text="Globetrotter Challenge"
           revealText="The Ultimate Travel Guessing Game!"
-          className="text-center bg-white/10 backdrop-blur-2xl border-0"
+          className="text-center bg-white/10 backdrop-blur-2xl border-0 w-11/12"
         >
         </TextRevealCard>
     );
